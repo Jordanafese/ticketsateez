@@ -111,8 +111,8 @@ div[for="head"] {
 div[for="head_info"] {
     background-color: #026cdf;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 4px;
+    grid-template-columns: auto auto;
+    grid-gap: 40px;
     padding: 15px 10px;
 }
 
