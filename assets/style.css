@@ -57,13 +57,13 @@ div[for="cards"] {
 #mi {
     display: flex;
     font-size: 14px;
-    color: #026CDF;
+    color:  #1e68c9;
     padding: 5px;
 }
 
 #mi svg {
     height: 19px;
-    fill: #026CDF;
+    fill:  #1e68c9;
     margin-right: 3px;
 }
 
@@ -105,7 +105,7 @@ div[for="cards"] {
 .modal a {
     text-decoration: none;
     font-size: 17px;
-    color: #026CDF;
+    color:  #1e68c9;
     font-family: averta_semibold, sans-serif;
     font-weight: 400;
 }
@@ -188,7 +188,7 @@ div[for="seat"] div[for="body"] {
 div[for="sinfo"] {
     text-align: center;
     padding: 9px 5px;
-    background-color: #026cdf;
+    background-color:  #1e68c9;
     color: #fff;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;

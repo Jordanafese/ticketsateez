@@ -22,8 +22,8 @@ body {
 }
 
 button {
-    background: #026CDF;
-    border: 1px solid #026CDF;
+    background:  #1e68c9;
+    border: 1px solid  #1e68c9;
     color: #FFF!important;
     border-radius: 6px;
     padding: 8px 12px;
@@ -50,7 +50,7 @@ div[for="top-bar"] {
     justify-content: center;
 }
 div[for = "menu"]{
-    background-color: #155fc8;
+    background-color:#1e68c9;
     color: rgb(237, 235, 235);
     width: 100%;
     height: 48px;
@@ -98,7 +98,7 @@ div[for="card"] {
 }
 
 div[for="head"] {
-    background-color: #155fc8;
+    background-color:  #1e68c9;
     border-radius: 12px 12px 0 0;
     padding: 10px 8px;
     color:#fff;
@@ -109,7 +109,7 @@ div[for="head"] {
 }
 
 div[for="head_info"] {
-    background-color: #026cdf;
+    background-color:#1e68c9;
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 40px;
@@ -178,7 +178,7 @@ div[for="timer"] {
 div[for="timer"] a {
     text-decoration: none;
     font-size: 17px;
-    color: #026CDF;
+    color:  #1e68c9;
     font-family: averta_semibold, sans-serif;
     font-weight: 400;
 }
