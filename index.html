@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticketmaster Mock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/style.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="event-header">
+        <img src="./banner.jpg" alt="BTS Event Banner" class="hero-image" />
+        <div class="header-overlay">
+          <button class="icon-btn" aria-label="Go back">&#8592;</button>
+          <button class="help-btn">Help</button>
+        </div>
+      </section>
+
+      <section class="event-card">
+        <p class="event-time">TUE • SEP 1, 2026 • 8:00 PM</p>
+        <h1>BTS WORLD TOUR 'ARIRANG' IN LOS ANGELES</h1>
+        <div class="event-meta-row">
+          <p class="venue">SoFi Stadium, Inglewood, California</p>
+          <p class="ticket-count">🎟 x3</p>
+        </div>
+      </section>
+
+      <button class="view-tickets">
+        <span class="view-tickets-inner">
+          <img src="./button.jpg" alt="" class="view-tickets-icon" />
+          <span>View Tickets</span>
+        </span>
+      </button>
+
+      <section class="tabs">
+        <button class="tab active" data-tab="tickets">Tickets</button>
+        <button class="tab" data-tab="extras">Extras</button>
+      </section>
+
+      <section class="content active" id="tickets-content">
+        <div class="ticket-filter-row">
+          <div class="order-meta">
+            <p id="order-number"></p>
+            <p class="ticket-total">x3 Tickets</p>
+          </div>
+          <span class="menu-marker" aria-hidden="true">:</span>
+        </div>
+
+        <article class="ticket-card" data-type="seat-9">
+          <h2>ARMY MEMBERSHIP Presale</h2>
+          <div class="seat-grid">
+            <div>
+              <p class="label">SECTION</p>
+              <p class="value">C118</p>
+            </div>
+            <div>
+              <p class="label">ROW</p>
+              <p class="value">7</p>
+            </div>
+            <div>
+              <p class="label">SEAT</p>
+              <p class="value">9</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket-card" data-type="seat-10">
+          <h2>ARMY MEMBERSHIP Presale</h2>
+          <div class="seat-grid">
+            <div>
+              <p class="label">SECTION</p>
+              <p class="value">C118</p>
+            </div>
+            <div>
+              <p class="label">ROW</p>
+              <p class="value">7</p>
+            </div>
+            <div>
+              <p class="label">SEAT</p>
+              <p class="value">10</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="ticket-card" data-type="seat-11">
+          <h2>ARMY MEMBERSHIP Presale</h2>
+          <div class="seat-grid">
+            <div>
+              <p class="label">SECTION</p>
+              <p class="value">C118</p>
+            </div>
+            <div>
+              <p class="label">ROW</p>
+              <p class="value">7</p>
+            </div>
+            <div>
+              <p class="label">SEAT</p>
+              <p class="value">11</p>
+            </div>
+          </div>
+        </article>
+
+        <section class="more-options">
+          <h3>MORE OPTIONS</h3>
+          <div class="map-wrap">
+            <iframe
+              id="concert-map"
+              title="Concert location map"
+              src="about:blank"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </section>
+      </section>
+
+      <section class="content" id="extras-content">
+        <article class="extras-card">
+          <h2>Extras</h2>
+          <p>No extras available yet for this event.</p>
+        </article>
+      </section>
+
+      <section class="action-pill">
+        <button class="pill-btn active" id="transfer-btn">
+          <span class="pill-icon">&#8599;</span>
+          <span>Transfer</span>
+        </button>
+        <button class="pill-btn" id="sell-btn" disabled>
+          <span class="pill-icon">&#8635;</span>
+          <span>Sell</span>
+        </button>
+      </section>
+    </main>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
