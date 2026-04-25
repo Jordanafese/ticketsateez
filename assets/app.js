@@ -88,6 +88,9 @@ function configureMapEmbed() {
     "https://maps.google.com/maps?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14&output=embed";
 
   const isCrOS = isChromeOS();
+  if (isCrOS) {
+    localStorage.removeItem(providerStorageKey);
+  }
   const preferredProvider = isCrOS ? "google" : isAppleDevice() ? "apple" : "google";
   const storedProvider = localStorage.getItem(providerStorageKey);
   const safeStoredProvider = isCrOS ? null : storedProvider;

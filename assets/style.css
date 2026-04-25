@@ -79,7 +79,18 @@ body {
   margin-top: -28px;
   background: var(--tab);
   color: #fff;
-  padding: 16px 16px 14px;
+  padding: 22px 16px 14px;
+  position: relative;
+}
+
+.event-time-badge {
+  position: absolute;
+  top: -26px;
+  left: 16px;
+  background: var(--tab);
+  padding: 8px 12px;
+  z-index: 2;
+  border-radius: 2px 2px 0 0;
 }
 
 .event-card h1 {
@@ -94,6 +105,7 @@ body {
   color: #f2f2f2;
   font-weight: 600;
   font-size: clamp(13px, 3vw, 16px);
+  white-space: nowrap;
 }
 
 .event-meta-row {
@@ -398,6 +410,10 @@ body {
     padding-right: 20px;
   }
 
+  .event-time-badge {
+    left: 20px;
+  }
+
   .event-card h1 {
     font-size: 44px;
   }
@@ -459,6 +475,10 @@ body {
 
   .event-card {
     padding: 22px 24px 18px;
+  }
+
+  .event-time-badge {
+    left: 24px;
   }
 
   .event-card h1 {
