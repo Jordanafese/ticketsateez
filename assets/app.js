@@ -50,6 +50,11 @@ tabButtons.forEach((tab) => {
 });
 
 const ticketCards = document.querySelectorAll(".ticket-card");
+const modalSeats = document.getElementById("modal-seats");
+const sCount = document.getElementById("s-count");
+const transferOverlay = document.getElementById("transfer-overlay");
+const transferBtn = document.getElementById("transfer-btn");
+const transferToBtn = document.getElementById("transfer-to-btn");
 
 ticketCards.forEach((card) => {
   card.addEventListener("click", () => {
@@ -57,6 +62,64 @@ ticketCards.forEach((card) => {
     card.classList.add("selected");
   });
 });
+
+function populateModalSeats() {
+  if (!modalSeats) return;
+  modalSeats.innerHTML = "";
+  ticketCards.forEach((card) => {
+    const seatValue = card.querySelector(".value:last-child").textContent;
+    const seat = document.createElement("div");
+    seat.className = "modal-seat";
+    seat.dataset.seat = card.dataset.type;
+    seat.innerHTML = `
+      <div class="seat-label">SEAT</div>
+      <div class="seat-number">${seatValue}</div>
+      <div class="seat-check">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="24" height="24">
+          <path fill="#fff" d="M20,38.5C9.8,38.5,1.5,30.2,1.5,20S9.8,1.5,20,1.5S38.5,9.8,38.5,20S30.2,38.5,20,38.5z"/>
+          <path fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="3" d="M11.2,20.1l5.8,5.8l13.2-13.2"/>
+        </svg>
+      </div>
+    `;
+    seat.addEventListener("click", () => {
+      seat.classList.toggle("selected");
+      const selected = document.querySelectorAll(".modal-seat.selected");
+      sCount.textContent = selected.length;
+    });
+    modalSeats.appendChild(seat);
+  });
+}
+
+function clearModal() {
+  if (transferOverlay) {
+    transferOverlay.classList.remove("active");
+    document.querySelectorAll(".modal-seat.selected").forEach((s) => s.classList.remove("selected"));
+    sCount.textContent = "0";
+  }
+}
+
+if (transferBtn) {
+  transferBtn.addEventListener("click", () => {
+    populateModalSeats();
+    if (transferOverlay) {
+      transferOverlay.classList.add("active");
+    }
+  });
+}
+
+if (transferOverlay) {
+  transferOverlay.addEventListener("click", (e) => {
+    if (e.target === transferOverlay) {
+      clearModal();
+    }
+  });
+}
+
+if (transferToBtn) {
+  transferToBtn.addEventListener("click", () => {
+    clearModal();
+  });
+}
 
 document.addEventListener("contextmenu", (event) => {
   event.preventDefault();

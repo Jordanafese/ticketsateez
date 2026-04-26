@@ -36,7 +36,13 @@
 
       <button class="view-tickets">
         <span class="view-tickets-inner">
-          <img src="./button.jpg" alt="" class="view-tickets-icon" />
+          <img
+            src="assets/view-ticket-icon.png"
+            alt=""
+            class="view-tickets-icon"
+            width="264"
+            height="215"
+          />
           <span>View Tickets</span>
         </span>
       </button>
@@ -56,11 +62,11 @@
         </div>
 
         <article class="ticket-card" data-type="seat-9">
-          <h2>ARMY MEMBERSHIP Presale</h2>
+          <h2>ARMY MEMBERSHIP PRESALE</h2>
           <div class="seat-grid">
             <div>
               <p class="label">SECTION</p>
-              <p class="value">C118</p>
+              <p class="value">118</p>
             </div>
             <div>
               <p class="label">ROW</p>
@@ -74,11 +80,11 @@
         </article>
 
         <article class="ticket-card" data-type="seat-10">
-          <h2>ARMY MEMBERSHIP Presale</h2>
+          <h2>ARMY MEMBERSHIP PRESALE</h2>
           <div class="seat-grid">
             <div>
               <p class="label">SECTION</p>
-              <p class="value">C118</p>
+              <p class="value">118</p>
             </div>
             <div>
               <p class="label">ROW</p>
@@ -92,11 +98,11 @@
         </article>
 
         <article class="ticket-card" data-type="seat-11">
-          <h2>ARMY MEMBERSHIP Presale</h2>
+          <h2>ARMY MEMBERSHIP PRESALE</h2>
           <div class="seat-grid">
             <div>
               <p class="label">SECTION</p>
-              <p class="value">C118</p>
+              <p class="value">118</p>
             </div>
             <div>
               <p class="label">ROW</p>
@@ -132,15 +138,40 @@
 
       <section class="action-pill">
         <button class="pill-btn active" id="transfer-btn">
-          <span class="pill-icon">&#8599;</span>
+          <span class="pill-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M4 20L20 4M20 4H10M20 4v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span>Transfer</span>
         </button>
         <button class="pill-btn" id="sell-btn" disabled>
-          <span class="pill-icon">&#8635;</span>
+          <span class="pill-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor"><path d="M480.1 192l7.9 0c13.3 0 24-10.7 24-24l0-144c0-9.7-5.8-18.5-14.8-22.2S477.9 .2 471 7L419.3 58.8C375 22.1 318 0 256 0 127 0 20.3 95.4 2.6 219.5 .1 237 12.2 253.2 29.7 255.7s33.7-9.7 36.2-27.1C79.2 135.5 159.3 64 256 64 300.4 64 341.2 79 373.7 104.3L327 151c-6.9 6.9-8.9 17.2-5.2 26.2S334.3 192 344 192l136.1 0zm29.4 100.5c2.5-17.5-9.7-33.7-27.1-36.2s-33.7 9.7-36.2 27.1c-13.3 93-93.4 164.5-190.1 164.5-44.4 0-85.2-15-117.7-40.3L185 361c6.9-6.9 8.9-17.2 5.2-26.2S177.7 320 168 320L24 320c-13.3 0-24 10.7-24 24L0 488c0 9.7 5.8 18.5 14.8 22.2S34.1 511.8 41 505l51.8-51.8C137 489.9 194 512 256 512 385 512 491.7 416.6 509.4 292.5z"/></svg></span>
           <span>Sell</span>
         </button>
       </section>
     </main>
+
+    <div class="transfer-overlay" id="transfer-overlay">
+      <div class="modal-wrapper">
+        <div class="modal" id="transfer-modal">
+          <div class="modal-header">SELECT TICKETS TO TRANSFER</div>
+          <div class="modal-body">
+            <div class="transfer-info">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="20" height="20">
+                <path d="M15,3C8.373,3,3,8.373,3,15c0,6.627,5.373,12,12,12s12-5.373,12-12C27,8.373,21.627,3,15,3z M16,21h-2v-7h2V21z M15,11.5c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.672,1.5,1.5S15.828,11.5,15,11.5z" fill="#999999"></path>
+              </svg>
+              <p>Only transfer tickets to people you know and trust to ensure everyone stays safe and socially distanced.</p>
+            </div>
+            <div class="transfer-tickets-info">
+              <div class="transfer-section-row">Sec C118, Row 7</div>
+              <div class="transfer-ticket-count">3 tickets</div>
+            </div>
+          </div>
+          <div class="modal-seats" id="modal-seats"></div>
+          <div class="modal-footer">
+            <div class="selected-count"><span id="s-count">0</span> Selected</div>
+            <button class="transfer-to-btn" id="transfer-to-btn">TRANSFER TO <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="16" height="16"><path d="M9.0449219 2.984375A2.0002 2.0002 0 0 0 7.8378906 6.6269531L19.560547 15L7.8378906 23.373047A2.0002 2.0002 0 1 0 10.162109 26.626953L24.162109 16.626953A2.0002 2.0002 0 0 0 24.162109 13.373047L10.162109 3.3730469A2.0002 2.0002 0 0 0 9.0449219 2.984375z" fill="#026CDF"></path></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="assets/app.js"></script>
   </body>
