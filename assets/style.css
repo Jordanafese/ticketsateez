@@ -588,6 +588,7 @@ body {
   max-width: 540px;
   margin: 0 auto;
   position: relative;
+  pointer-events: none;
 }
 
 .modal {
@@ -600,6 +601,7 @@ body {
   overflow-y: auto;
   border-radius: 16px 16px 0 0;
   animation: slideUp 0.3s ease-out;
+  pointer-events: auto;
 }
 
 @keyframes slideUp {
@@ -612,12 +614,40 @@ body {
 }
 
 .modal-header {
-  text-align: center;
-  padding: 14px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 14px 40px 14px 12px;
   border-bottom: 1px solid #e0e0e0;
   font-weight: 700;
   font-size: 13px;
   color: #222;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #555;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: #eee;
+  color: #111;
 }
 
 .modal-body {

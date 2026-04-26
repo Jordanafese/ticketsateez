@@ -55,6 +55,7 @@ const sCount = document.getElementById("s-count");
 const transferOverlay = document.getElementById("transfer-overlay");
 const transferBtn = document.getElementById("transfer-btn");
 const transferToBtn = document.getElementById("transfer-to-btn");
+const transferModalClose = document.getElementById("transfer-modal-close");
 
 ticketCards.forEach((card) => {
   card.addEventListener("click", () => {
@@ -115,6 +116,21 @@ if (transferOverlay) {
   });
 }
 
+if (transferModalClose) {
+  transferModalClose.addEventListener("click", () => {
+    clearModal();
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") {
+    return;
+  }
+  if (transferOverlay && transferOverlay.classList.contains("active")) {
+    clearModal();
+  }
+});
+
 if (transferToBtn) {
   transferToBtn.addEventListener("click", () => {
     clearModal();
@@ -144,24 +160,34 @@ function configureMapEmbed() {
     return;
   }
 
-  const providerStorageKey = "ticketmasterMockMapProvider";
+  const providerStorageKey = "ticketmasterMockMapProvider_v2";
+  const legacyProviderKey = "ticketmasterMockMapProvider";
+  localStorage.removeItem(legacyProviderKey);
+
   const appleMapUrl =
     "https://maps.apple.com/?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14";
   const googleMapUrl =
-    "https://maps.google.com/maps?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14&output=embed";
+    "https://www.google.com/maps?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14&output=embed";
 
   const isCrOS = isChromeOS();
-  if (isCrOS) {
+  const onAppleClient = isAppleDevice();
+
+  if (isCrOS || !onAppleClient) {
     localStorage.removeItem(providerStorageKey);
   }
-  const preferredProvider = isCrOS ? "google" : isAppleDevice() ? "apple" : "google";
-  const storedProvider = localStorage.getItem(providerStorageKey);
+
+  const preferredProvider = isCrOS || !onAppleClient ? "google" : "apple";
+  const storedProvider = onAppleClient ? localStorage.getItem(providerStorageKey) : null;
   const safeStoredProvider = isCrOS ? null : storedProvider;
   const primaryProvider =
-    safeStoredProvider === "apple" || safeStoredProvider === "google"
+    onAppleClient && (safeStoredProvider === "apple" || safeStoredProvider === "google")
       ? safeStoredProvider
       : preferredProvider;
-  const fallbackProvider = primaryProvider === "apple" ? "google" : "apple";
+  const fallbackProvider = onAppleClient
+    ? primaryProvider === "apple"
+      ? "google"
+      : "apple"
+    : "google";
   const providerUrls = {
     apple: appleMapUrl,
     google: googleMapUrl,
@@ -189,7 +215,9 @@ function configureMapEmbed() {
   mapFrame.addEventListener("load", () => {
     loadHandled = true;
     window.clearTimeout(fallbackTimeout);
-    localStorage.setItem(providerStorageKey, activeProvider);
+    if (onAppleClient) {
+      localStorage.setItem(providerStorageKey, activeProvider);
+    }
   });
 
   mapFrame.addEventListener("error", () => {
