@@ -162,12 +162,10 @@ function configureMapEmbed() {
   localStorage.removeItem(legacyProviderKey);
   localStorage.removeItem(providerStorageKey);
 
-  const appleMapUrl =
-    "https://maps.apple.com/?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14";
-  const googleMapUrl =
-    "https://www.google.com/maps?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14&output=embed";
-  const googleFallbackUrl =
-    "https://maps.google.com/maps?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14&output=embed";
+  const mapQuery = "MetLife%20Stadium%2C%20East%20Rutherford%2C%20New%20Jersey";
+  const appleMapUrl = `https://maps.apple.com/?q=${mapQuery}&z=14`;
+  const googleMapUrl = `https://www.google.com/maps?q=${mapQuery}&z=14&output=embed`;
+  const googleFallbackUrl = `https://maps.google.com/maps?q=${mapQuery}&z=14&output=embed`;
 
   const onApple = isAppleDevice();
   // Apple Maps is not a reliable iframe provider across iOS browsers.
