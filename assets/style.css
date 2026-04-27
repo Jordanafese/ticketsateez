@@ -41,7 +41,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.58);
+  filter: brightness(0.5);
 }
 
 .header-overlay {
@@ -171,13 +171,15 @@ body {
 }
 
 .tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  gap: 16px;
+  padding: 0 8px;
   background: #f6f6f6;
   border-bottom: 1px solid var(--line);
 }
 
 .tab {
+  flex: 1;
   border: 0;
   background: transparent;
   padding: 11px 8px 10px;
@@ -190,7 +192,21 @@ body {
 
 .tab.active {
   color: #1f1f1f;
-  border-color: #2e3b4e;
+}
+
+.tab[data-tab="tickets"].active {
+  border-bottom-width: 4px;
+  border-bottom-color: #000;
+}
+
+.tab[data-tab="extras"]:not(.active) {
+  border-bottom-width: 2px;
+  border-bottom-color: #000;
+}
+
+.tab[data-tab="extras"].active {
+  border-bottom-width: 4px;
+  border-bottom-color: #000;
 }
 
 .content {
@@ -303,8 +319,8 @@ body {
   margin: 0;
   padding: 10px 8px 8px;
   font-size: clamp(12px, 2.6vw, 18px);
-  font-weight: 600;
-  color: #313131;
+  font-weight: 800;
+  color: #000;
   border-bottom: 1px solid #dedede;
 }
 
