@@ -310,8 +310,9 @@ body {
 
 .seat-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 12px 14px 16px;
+  grid-template-columns: minmax(0, 1.52fr) minmax(0, 0.65fr) minmax(0, 0.65fr);
+  column-gap: 4px;
+  padding: 12px 12px 14px;
 }
 
 .label {
@@ -562,7 +563,7 @@ body {
   }
 
   .seat-grid {
-    padding: 12px 16px 16px;
+    padding: 12px 16px 14px;
   }
 
   .label {
