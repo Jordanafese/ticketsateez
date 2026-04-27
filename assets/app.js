@@ -64,6 +64,12 @@ ticketCards.forEach((card) => {
   });
 });
 
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".ticket-card")) {
+    ticketCards.forEach((card) => card.classList.remove("selected"));
+  }
+});
+
 function populateModalSeats() {
   if (!modalSeats) return;
   modalSeats.innerHTML = "";
