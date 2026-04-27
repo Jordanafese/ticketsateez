@@ -5,7 +5,7 @@
   --muted: #737373;
   --line: #d8d8d8;
   --blue: #1441e2;
-  --tab: #292932;
+  --tab: #202020;
 }
 
 * {
@@ -196,17 +196,17 @@ body {
 
 .tab[data-tab="tickets"].active {
   border-bottom-width: 4px;
-  border-bottom-color: #000;
+  border-bottom-color: #202020;
 }
 
 .tab[data-tab="extras"]:not(.active) {
   border-bottom-width: 2px;
-  border-bottom-color: #000;
+  border-bottom-color: #202020;
 }
 
 .tab[data-tab="extras"].active {
   border-bottom-width: 4px;
-  border-bottom-color: #000;
+  border-bottom-color: #202020;
 }
 
 .content {
@@ -320,7 +320,7 @@ body {
   padding: 10px 8px 8px;
   font-size: clamp(12px, 2.6vw, 18px);
   font-weight: 800;
-  color: #000;
+  color: #202020;
   border-bottom: 1px solid #dedede;
 }
 
