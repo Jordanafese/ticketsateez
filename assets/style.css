@@ -80,7 +80,7 @@ body {
   margin-top: -36px;
   background: var(--tab);
   color: #fff;
-  padding: 22px 16px 14px;
+  padding: 5px 16px 14px;
   position: relative;
 }
 
@@ -105,6 +105,7 @@ body {
   display: block;
   white-space: nowrap;
   max-width: 100%;
+  padding-right: 10px;
 }
 
 .event-title-sub {
@@ -493,6 +494,7 @@ body {
   }
 
   .event-card {
+    padding-top: 5px;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -563,7 +565,7 @@ body {
   }
 
   .event-card {
-    padding: 22px 24px 18px;
+    padding: 5px 24px 18px;
   }
 
   .event-time-badge {
