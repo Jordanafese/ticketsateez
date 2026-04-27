@@ -50,7 +50,7 @@ tabButtons.forEach((tab) => {
 });
 
 const ticketCards = document.querySelectorAll(".ticket-card");
-const modalSeats = document.getElementById("modal-seats");
+const modalSeats = document.getElementById("modal-seats"); 
 const sCount = document.getElementById("s-count");
 const transferOverlay = document.getElementById("transfer-overlay");
 const transferBtn = document.getElementById("transfer-btn");
@@ -144,14 +144,11 @@ document.addEventListener("contextmenu", (event) => {
 function isAppleDevice() {
   const ua = navigator.userAgent || "";
   const platform = navigator.platform || "";
+  const touchPoints = navigator.maxTouchPoints || 0;
   const isIOS = /iPhone|iPad|iPod/i.test(ua);
-  const isMac = /Mac/i.test(platform);
-  return isIOS || isMac;
-}
-
-function isChromeOS() {
-  const ua = navigator.userAgent || "";
-  return /CrOS/i.test(ua);
+  const isMacTouch = /Mac/i.test(platform) && touchPoints > 1;
+  const isMacSafari = /Mac/i.test(platform) && /Safari/i.test(ua) && !/Chrome|Chromium|CriOS|Edg/i.test(ua);
+  return isIOS || isMacTouch || isMacSafari;
 }
 
 function configureMapEmbed() {
@@ -163,37 +160,21 @@ function configureMapEmbed() {
   const providerStorageKey = "ticketmasterMockMapProvider_v2";
   const legacyProviderKey = "ticketmasterMockMapProvider";
   localStorage.removeItem(legacyProviderKey);
+  localStorage.removeItem(providerStorageKey);
 
   const appleMapUrl =
     "https://maps.apple.com/?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14";
   const googleMapUrl =
     "https://www.google.com/maps?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14&output=embed";
+  const googleFallbackUrl =
+    "https://maps.google.com/maps?q=SoFi%20Stadium%2C%20Inglewood%2C%20California&z=14&output=embed";
 
-  const isCrOS = isChromeOS();
-  const onAppleClient = isAppleDevice();
+  const onApple = isAppleDevice();
+  // Apple Maps is not a reliable iframe provider across iOS browsers.
+  // Keep iframe on Google for guaranteed display, and offer Apple Maps via link.
+  const primaryMapUrl = googleMapUrl;
+  const fallbackMapUrl = googleFallbackUrl;
 
-  if (isCrOS || !onAppleClient) {
-    localStorage.removeItem(providerStorageKey);
-  }
-
-  const preferredProvider = isCrOS || !onAppleClient ? "google" : "apple";
-  const storedProvider = onAppleClient ? localStorage.getItem(providerStorageKey) : null;
-  const safeStoredProvider = isCrOS ? null : storedProvider;
-  const primaryProvider =
-    onAppleClient && (safeStoredProvider === "apple" || safeStoredProvider === "google")
-      ? safeStoredProvider
-      : preferredProvider;
-  const fallbackProvider = onAppleClient
-    ? primaryProvider === "apple"
-      ? "google"
-      : "apple"
-    : "google";
-  const providerUrls = {
-    apple: appleMapUrl,
-    google: googleMapUrl,
-  };
-
-  let activeProvider = primaryProvider;
   let didFallback = false;
   let loadHandled = false;
 
@@ -202,8 +183,7 @@ function configureMapEmbed() {
       return;
     }
     didFallback = true;
-    activeProvider = fallbackProvider;
-    mapFrame.src = providerUrls[fallbackProvider];
+    mapFrame.src = fallbackMapUrl;
   }
 
   const fallbackTimeout = window.setTimeout(() => {
@@ -215,9 +195,6 @@ function configureMapEmbed() {
   mapFrame.addEventListener("load", () => {
     loadHandled = true;
     window.clearTimeout(fallbackTimeout);
-    if (onAppleClient) {
-      localStorage.setItem(providerStorageKey, activeProvider);
-    }
   });
 
   mapFrame.addEventListener("error", () => {
@@ -225,7 +202,22 @@ function configureMapEmbed() {
     switchToFallback();
   });
 
-  mapFrame.src = providerUrls[primaryProvider];
+  mapFrame.src = primaryMapUrl;
+
+  const mapWrap = mapFrame.closest(".map-wrap");
+  if (mapWrap) {
+    const existingLink = mapWrap.querySelector(".map-open-link");
+    if (existingLink) {
+      existingLink.remove();
+    }
+    const openLink = document.createElement("a");
+    openLink.className = "map-open-link";
+    openLink.href = onApple ? appleMapUrl : googleMapUrl.replace("&output=embed", "");
+    openLink.target = "_blank";
+    openLink.rel = "noopener noreferrer";
+    openLink.textContent = onApple ? "Open in Apple Maps" : "Open in Google Maps";
+    mapWrap.appendChild(openLink);
+  }
 }
 
 configureMapEmbed();

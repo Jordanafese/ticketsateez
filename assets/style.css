@@ -286,6 +286,19 @@ body {
   display: block;
 }
 
+.map-open-link {
+  display: inline-block;
+  margin: 8px 2px 0;
+  color: #026cdf;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.map-open-link:hover {
+  text-decoration: underline;
+}
+
 .ticket-card h2 {
   margin: 0;
   padding: 12px 12px 10px;
@@ -374,10 +387,12 @@ body {
   font-size: 17px;
 }
 
-.pill-icon svg {
+.pill-icon svg,
+.pill-icon img {
   width: 1em;
   height: 1em;
   display: block;
+  object-fit: contain;
 }
 
 @media (max-width: 360px) {
